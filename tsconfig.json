@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "ES6",
+    "esModuleInterop": true,
+    "moduleResolution": "Node"
+  },
+  "exclude": ["node_modules/"]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "nestjs-proposal-database-seeders",
+  "author": "David Alen <davidalen51@gmail.com>",
+  "private": false,
+  "scripts": {
+    "test": "jest test"
+  }
+}
