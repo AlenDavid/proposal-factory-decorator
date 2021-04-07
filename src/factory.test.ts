@@ -8,25 +8,27 @@ describe("[Factory]", () => {
       name: string;
     }
 
-    expect(
-      await Factory.generate<User>({ name })
-    ).toStrictEqual({ name });
+    expect(await new Factory(User).generate({ name })).toStrictEqual({ name });
   });
 
   test("instantiate name from decorator", async () => {
-    function propertyDecorator(setValue): PropertyDecorator {
+    function propertyDecorator(setValue: () => string): PropertyDecorator {
       return function (target: Object, propertyKey: string | symbol): void {
-        console.log(target);
+        console.log("setValue: ", setValue);
+        console.log("propertyKey: ", propertyKey);
+
+        target[propertyKey] = setValue();
+        console.log("target: ", target);
       };
     }
 
     const name = "test";
 
     class User {
-      @propertyDecorator(name)
+      @propertyDecorator(() => name)
       name: string;
     }
 
-    expect(await Factory.generate<User>()).toStrictEqual({ name });
+    expect(await new Factory(User).generate()).toStrictEqual({ name });
   });
 });
