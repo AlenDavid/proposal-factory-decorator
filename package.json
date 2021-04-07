@@ -1,8 +1,17 @@
 {
-  "name": "nestjs-proposal-database-seeders",
+  "name": "proposal-factory-decorator",
+  "description": "This module was made to decorate fields to furder create a Factory for that class.",
   "author": "David Alen <davidalen51@gmail.com>",
   "private": false,
   "scripts": {
     "test": "jest test"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4"
+  },
+  "dependencies": {
+    "ts-node": "^9.1.1"
   }
 }
