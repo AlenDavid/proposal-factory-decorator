@@ -1,0 +1,8 @@
+# folders
+
+node_modules/
+.vscode/
+
+# files
+
+jest.config.ts
