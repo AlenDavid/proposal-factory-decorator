@@ -15,7 +15,7 @@
   "private": false,
   "main": "index.js",
   "scripts": {
-    "clean": "rm ./src/**/*.d.ts ./src/**/*.js ./src/**/*.js.map index.d.ts index.js*",
+    "clean": "rm -f ./src/*.d.ts ./src/**/*.d.ts ./src/*.js ./src/*.js.map ./src/**/*.js ./src/**/*.js.map index.d.ts index.js*",
     "build": "tsc",
     "test": "jest"
   },
