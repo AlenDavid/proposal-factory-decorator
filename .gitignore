@@ -8,3 +8,5 @@ dist/
 # js is ugly
 
 *.js
+*.d.ts
+*.map

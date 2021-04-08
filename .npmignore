@@ -6,3 +6,5 @@ node_modules/
 # files
 
 jest.config.ts
+*.test.ts
+*.ts
