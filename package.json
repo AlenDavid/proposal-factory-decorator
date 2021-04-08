@@ -15,7 +15,8 @@
   "private": false,
   "main": "dist/src/index.js",
   "scripts": {
-    "test": "jest test"
+    "build": "tsc",
+    "test": "jest"
   },
   "license": "MIT",
   "homepage": "https://github.com/AlenDavid/proposal-factory-decorator",
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "reflect-metadata": "^0.1.13",
-    "ts-node": "^9.1.1"
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
   }
 }
