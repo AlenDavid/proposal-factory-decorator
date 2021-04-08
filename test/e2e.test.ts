@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { Factory, CreateFactory } from "../src/index";
+import { Factory, CreateFactory } from "../index";
 
 describe("[Factory]", () => {
   test("instantiate field from decorator", async () => {
