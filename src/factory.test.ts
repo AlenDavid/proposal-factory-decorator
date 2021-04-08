@@ -3,29 +3,28 @@ import "reflect-metadata";
 import { Factory, CreateFactory } from "./factory";
 
 describe("[Factory]", () => {
-  test("instantiate name from generator", async () => {
-    const name = "test";
+  test("instantiate field from generator", async () => {
+    const field = "test";
 
     class User {
-      name: string;
+      field: string;
     }
 
     expect(
-      await new CreateFactory<User>(User).generate({ name })
+      await new CreateFactory<User>(User).generate({ field })
     ).toStrictEqual({
-      name,
+      field,
     });
   });
 
-  test("instantiate name from decorator", async () => {
-    const name = "test";
+  test("instantiate field from decorator", async () => {
     class User {
-      @Factory(() => name)
-      name: string;
+      @Factory(() => "test")
+      field: string;
     }
 
     expect(await new CreateFactory<User>(User).generate()).toStrictEqual({
-      name,
+      field: "test",
     });
   });
 });

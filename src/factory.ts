@@ -1,33 +1,38 @@
 import "reflect-metadata";
 
-export function Factory(resolve: () => any) {
+type Property = {
+  target: Object;
+  propertyKey: string | symbol;
+  resolver: () => any;
+};
+
+class FactoryStorage {
+  private static propertiesRef: Property[] = [];
+
+  static add(property: Property) {
+    this.propertiesRef.push(property);
+  }
+
+  static get() {
+    return this.propertiesRef;
+  }
+
+  static find(target: Object) {
+    return this.propertiesRef.filter((val) => val.target === target);
+  }
+}
+
+export function Factory(resolver: () => any) {
   return function (target: Object, propertyKey: string | symbol) {
     Reflect.defineMetadata(
-      "Factory:FactoryDecorator:" + target.constructor.name,
-      { resolve },
+      "Factory:CreateFactory",
+      resolver,
       target,
       propertyKey
     );
+
+    FactoryStorage.add({ target: target.constructor, propertyKey, resolver });
   };
-}
-
-function getDecorators(target: Object, propertyName: string | symbol): any[] {
-  // get info about keys that used in current property
-  const keys: any[] = Reflect.getMetadataKeys(target, propertyName);
-  const decorators = keys
-    // filter your custom decorators
-    .filter((key) =>
-      key
-        .toString()
-        .startsWith("Factory:FactoryDecorator:" + target.constructor.name)
-    )
-    .reduce((values, key) => {
-      // get metadata value.
-      const currValues = Reflect.getMetadata(key, target, propertyName);
-      return values.concat(currValues);
-    }, []);
-
-  return decorators;
 }
 
 export class CreateFactory<T> {
@@ -38,19 +43,8 @@ export class CreateFactory<T> {
   }
 
   async generate(data: Partial<T> = {}): Promise<Partial<T>> {
-    const keys = Reflect.ownKeys(this.target.constructor).filter(
-      (key) => Object.keys({ ...data }).indexOf(key.toString()) === -1
-    );
-
-    // for each ket that is declare at @Factory
-    for (let key of keys) {
-      const fromMetadata = getDecorators(this.target, key);
-
-      if (fromMetadata.length > 0) {
-        fromMetadata.forEach(({ resolve }) => {
-          data[key] = resolve();
-        });
-      }
+    for (const props of FactoryStorage.find(this.target.constructor)) {
+      data[props.propertyKey] = props.resolver();
     }
 
     return data;
