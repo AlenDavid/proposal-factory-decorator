@@ -19,6 +19,10 @@
     "build": "tsc",
     "test": "jest"
   },
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/davidalen"
+  },
   "license": "MIT",
   "homepage": "https://github.com/AlenDavid/proposal-factory-decorator",
   "repository": "github:AlenDavid/proposal-factory-decorator.git",
@@ -28,7 +32,6 @@
     "ts-jest": "^26.5.4"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.13",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   }

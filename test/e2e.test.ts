@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 import { Factory, CreateFactory } from "../index";
 
 describe("[Factory]", () => {

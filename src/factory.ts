@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 type Property = {
   target: Object;
   propertyKey: string | symbol;
@@ -24,13 +22,6 @@ class FactoryStorage {
 
 export function Factory(resolver: () => any) {
   return function (target: Object, propertyKey: string | symbol) {
-    Reflect.defineMetadata(
-      "Factory:CreateFactory",
-      resolver,
-      target,
-      propertyKey
-    );
-
     FactoryStorage.add({ target: target.constructor, propertyKey, resolver });
   };
 }
