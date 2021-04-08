@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "ES6",
     "esModuleInterop": true,
     "moduleResolution": "Node",
-    "outDir": "dist"
+    "outDir": "dist",
+    "module": "CommonJS",
+    "declaration": true,
+    "sourceMap": true
   },
-  "exclude": ["node_modules/"]
+  "exclude": ["node_modules/", "jest.config.ts", "**/*.test.ts"],
+  "include": ["src", "index.ts"]
 }
