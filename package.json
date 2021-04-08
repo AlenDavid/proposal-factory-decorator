@@ -1,6 +1,6 @@
 {
   "name": "proposal-factory-decorator",
-  "version": "0.2.6",
+  "version": "0.2.9",
   "description": "This module was made to decorate fields to furder create a Factory for that class.",
   "author": "David Alen <davidalen51@gmail.com> (https://github.com/AlenDavid)",
   "contributors": [
