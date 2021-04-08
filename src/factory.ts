@@ -1,9 +1,9 @@
 import "reflect-metadata";
 
-export function FactoryDecorator(resolve: () => any) {
+export function Factory(resolve: () => any) {
   return function (target: Object, propertyKey: string | symbol) {
     Reflect.defineMetadata(
-      "Factory:FactoryDecorator",
+      "Factory:FactoryDecorator:" + target.constructor.name,
       { resolve },
       target,
       propertyKey
@@ -11,12 +11,16 @@ export function FactoryDecorator(resolve: () => any) {
   };
 }
 
-function getDecorators(target: any, propertyName: string | symbol): any[] {
+function getDecorators(target: Object, propertyName: string | symbol): any[] {
   // get info about keys that used in current property
   const keys: any[] = Reflect.getMetadataKeys(target, propertyName);
   const decorators = keys
     // filter your custom decorators
-    .filter((key) => key.toString().startsWith("Factory:FactoryDecorator"))
+    .filter((key) =>
+      key
+        .toString()
+        .startsWith("Factory:FactoryDecorator:" + target.constructor.name)
+    )
     .reduce((values, key) => {
       // get metadata value.
       const currValues = Reflect.getMetadata(key, target, propertyName);
@@ -26,7 +30,7 @@ function getDecorators(target: any, propertyName: string | symbol): any[] {
   return decorators;
 }
 
-export class Factory<T> {
+export class CreateFactory<T> {
   target: T;
 
   constructor(target: { new (): T }) {
@@ -38,9 +42,9 @@ export class Factory<T> {
       (key) => Object.keys({ ...data }).indexOf(key.toString()) === -1
     );
 
+    // for each ket that is declare at @Factory
     for (let key of keys) {
       const fromMetadata = getDecorators(this.target, key);
-      console.log(key, fromMetadata);
 
       if (fromMetadata.length > 0) {
         fromMetadata.forEach(({ resolve }) => {
@@ -50,5 +54,18 @@ export class Factory<T> {
     }
 
     return data;
+  }
+
+  async generateMany(
+    count: number,
+    data: Partial<T> = {}
+  ): Promise<Partial<T>[]> {
+    const arr: Partial<T>[] = [];
+
+    for (let index = 0; index < count; index++) {
+      this.generate(data).then((value) => (arr[index] = value));
+    }
+
+    return arr;
   }
 }

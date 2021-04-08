@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { Factory, FactoryDecorator } from "./factory";
+import { Factory, CreateFactory } from "./factory";
 
 describe("[Factory]", () => {
   test("instantiate name from generator", async () => {
@@ -10,7 +10,9 @@ describe("[Factory]", () => {
       name: string;
     }
 
-    expect(await new Factory<User>(User).generate({ name })).toStrictEqual({
+    expect(
+      await new CreateFactory<User>(User).generate({ name })
+    ).toStrictEqual({
       name,
     });
   });
@@ -18,10 +20,12 @@ describe("[Factory]", () => {
   test("instantiate name from decorator", async () => {
     const name = "test";
     class User {
-      @FactoryDecorator(() => name)
+      @Factory(() => name)
       name: string;
     }
 
-    expect(await new Factory<User>(User).generate()).toStrictEqual({ name });
+    expect(await new CreateFactory<User>(User).generate()).toStrictEqual({
+      name,
+    });
   });
 });
