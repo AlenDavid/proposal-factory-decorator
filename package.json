@@ -1,11 +1,25 @@
 {
   "name": "proposal-factory-decorator",
+  "version": "0.2.0",
   "description": "This module was made to decorate fields to furder create a Factory for that class.",
-  "author": "David Alen <davidalen51@gmail.com>",
+  "author": "David Alen <davidalen51@gmail.com> (https://github.com/AlenDavid)",
+  "contributors": [
+    "David Alen <davidalen51@gmail.com> (https://github.com/AlenDavid)"
+  ],
+  "keywords": [
+    "Factory",
+    "Decorators",
+    "Classes",
+    "Typescript"
+  ],
   "private": false,
+  "main": "src/index.ts",
   "scripts": {
     "test": "jest test"
   },
+  "license": "MIT",
+  "homepage": "https://github.com/AlenDavid/proposal-factory-decorator",
+  "repository": "github:AlenDavid/proposal-factory-decorator.git",
   "devDependencies": {
     "@types/jest": "^26.0.22",
     "jest": "^26.6.3",
