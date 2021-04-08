@@ -1,6 +1,6 @@
 {
   "name": "proposal-factory-decorator",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "This module was made to decorate fields to furder create a Factory for that class.",
   "author": "David Alen <davidalen51@gmail.com> (https://github.com/AlenDavid)",
   "contributors": [
@@ -13,7 +13,7 @@
     "Typescript"
   ],
   "private": false,
-  "main": "src/index.ts",
+  "main": "dist/src/index.js",
   "scripts": {
     "test": "jest test"
   },
