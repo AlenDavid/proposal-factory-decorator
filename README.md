@@ -2,9 +2,6 @@
 
 This package is aimed to testing and seeding at your projects. It's easy to implement and create your own class factory.
 
-<a class="github-button" href="https://github.com/AlenDavid" aria-label="Follow @AlenDavid on GitHub">Follow @AlenDavid</a>
-<a class="github-button" href="https://github.com/AlenDavid/proposal-factory-decorator" data-icon="octicon-star" aria-label="Star AlenDavid/proposal-factory-decorator on GitHub">Star</a>
-
 - [Class Factory Decorators](#class-factory-decorators)
   - [Install through cli via command](#install-through-cli-via-command)
   - [Example code](#example-code)
